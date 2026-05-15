@@ -4,5 +4,5 @@
   "chromadb_location": "./chroma_db",
   "collection_name": "employee_documents",
   "documents_in_chromadb": 43,
-  "setup_completed": "2026-05-07T01:30:37.131881"
+  "setup_completed": "2026-05-10T01:15:56.225634"
 }
