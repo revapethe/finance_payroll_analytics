@@ -1,11 +1,11 @@
 :root { color-scheme: dark; }
 .stApp {
-    background: #073867;
+    background: #041e38;
     color: #f8f9fc;
     font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
-[data-testid="stSidebar"] { background: #0c426d; border-right: 1px solid #326589; }
-[data-testid="stHeader"] { background: #073867; }
+[data-testid="stSidebar"] { background: #0a304f; border-right: 1px solid #326589; }
+[data-testid="stHeader"] { background: #041e38; }
 .block-container { max-width: 1640px; padding: 2.3rem 2.5rem 3rem; }
 h1, h2, h3 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; letter-spacing: -.035em; color: #f8f9fc !important; }
 h1 { font-size: clamp(1.8rem, 3vw, 2.8rem) !important; font-weight: 750 !important; margin-bottom: .25rem; }
@@ -13,27 +13,27 @@ h2 { font-size: 1.5rem !important; } h3 { font-size: 1.1rem !important; }
 .subtitle { color: #dcebf5; font-size: .98rem; margin-bottom: 1.4rem; }
 .eyebrow { color: #08b9b6; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
 [data-testid="stMetric"] {
-    background: #0c426d;
+    background: #0a304f;
     border: 1px solid #326589; border-top: 2px solid #08b9b6;
     border-radius: 8px; padding: 1.1rem 1.25rem; min-height: 118px;
     box-shadow: none;
 }
 [data-testid="stMetricLabel"] { color: #dcebf5; font-size: .82rem; }
 [data-testid="stMetricValue"] { color: #f8f9fc; font-size: clamp(1.65rem,2.4vw,2.3rem); font-weight: 650; }
-[data-testid="stExpander"] { border: 1px solid #326589; border-radius: 8px; background: #073867; }
-[data-testid="stExpander"] summary { background: #0c426d; border-radius: 10px; }
+[data-testid="stExpander"] { border: 1px solid #326589; border-radius: 8px; background: #041e38; }
+[data-testid="stExpander"] summary { background: #0a304f; border-radius: 10px; }
 [data-testid="stRadio"] label, [data-testid="stMultiSelect"] label,
 [data-testid="stSelectbox"] label, [data-testid="stSlider"] label { color: #dcebf5 !important; }
-[data-baseweb="select"] > div, [data-baseweb="input"] { background: #0c426d !important; border-color: #326589 !important; }
+[data-baseweb="select"] > div, [data-baseweb="input"] { background: #0a304f !important; border-color: #326589 !important; }
 input, textarea { color: #f8f9fc !important; -webkit-text-fill-color: #f8f9fc !important; }
 [data-testid="stButton"] button, [data-testid="stDownloadButton"] button {
     border-radius: 8px; border-color: #326589; font-weight: 600;
 }
-[data-testid="stButton"] button[kind="primary"] { background: #08b9b6; color: #073867; }
+[data-testid="stButton"] button[kind="primary"] { background: #08b9b6; color: #041e38; }
 [data-testid="stPlotlyChart"] { border: 1px solid #326589; border-radius: 8px; overflow: hidden; }
 [data-testid="stDataFrame"] { border: 1px solid #326589; border-radius: 10px; overflow: hidden; }
 [data-testid="stCaptionContainer"] { color: #dcebf5; }
-.agent-message { background: #0c426d; border: 1px solid #326589; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
+.agent-message { background: #0a304f; border: 1px solid #326589; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
 hr { border-color: #326589 !important; }
 @media (max-width: 760px) {
     .block-container { padding: 1.2rem 1rem; }
@@ -51,18 +51,18 @@ hr { border-color: #326589 !important; }
 [data-testid="stRadio"] [role="radiogroup"] { gap: .7rem; }
 [data-testid="stRadio"] [role="radiogroup"] label {
     padding: .45rem .7rem; border: 1px solid #326589;
-    border-radius: 6px; background: #0c426d;
+    border-radius: 6px; background: #0a304f;
 }
-.insight-card { background: #0c426d; border: 1px solid #326589; border-left: 3px solid #08b9b6; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #dcebf5; }
+.insight-card { background: #0a304f; border: 1px solid #326589; border-left: 3px solid #08b9b6; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #dcebf5; }
 
 /* Teal accents on flat navy surfaces. */
 [data-testid="stButton"] button[kind="primary"] {
     background: #08b9b6 !important; border-color: #08b9b6 !important;
-    color: #073867 !important; -webkit-text-fill-color: #073867 !important;
+    color: #041e38 !important; -webkit-text-fill-color: #041e38 !important;
 }
 [data-testid="stMetric"]:nth-child(1) { border-top-color: #08b9b6; }
 [data-testid="stSidebar"] .eyebrow { color: #1d6ba4; }
-::selection { background: #08b9b6; color: #073867; }
+::selection { background: #08b9b6; color: #041e38; }
 
 /* Reference-inspired navy, teal, pale blue and white palette. */
 [data-testid="stSidebar"] { background: #ddeff8 !important; border-right: 1px solid #b7d4e5; }
@@ -71,6 +71,63 @@ hr { border-color: #326589 !important; }
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3 { color: #073867 !important; }
+[data-testid="stSidebar"] h3 { color: #041e38 !important; }
 [data-testid="stSidebar"] [role="radiogroup"] label { background: #f3fafc !important; border-color: #b7d4e5 !important; }
-[data-testid="stSidebar"] button { color: #073867 !important; }
+[data-testid="stSidebar"] button { color: #041e38 !important; }
+
+/* Teal action buttons with dark text and a visible keyboard-focus ring. */
+[data-testid="stButton"] button,
+[data-testid="stDownloadButton"] button {
+    background-color: #08b9b6 !important;
+    border-color: #08b9b6 !important;
+    color: #041e38 !important;
+    -webkit-text-fill-color: #041e38 !important;
+}
+[data-testid="stButton"] button:hover,
+[data-testid="stDownloadButton"] button:hover {
+    background-color: #27cbc6 !important;
+    border-color: #27cbc6 !important;
+}
+[data-testid="stButton"] button:focus-visible,
+[data-testid="stDownloadButton"] button:focus-visible {
+    outline: 2px solid #f8f9fc;
+    outline-offset: 3px;
+}
+[data-testid="stButton"] button:disabled,
+[data-testid="stDownloadButton"] button:disabled { opacity: .5; }
+
+/* Sidebar radio options: plain hollow rings, with a dot only for selection. */
+[data-testid="stSidebar"] [data-testid="stRadioOption"] {
+    background: transparent !important;
+    border: 0 !important;
+    padding: .35rem 0 !important;
+    border-radius: 0;
+}
+[data-testid="stSidebar"] [data-testid="stRadioOption"] > div > div:first-child {
+    width: 17px !important;
+    height: 17px !important;
+    border: 2px solid #58758c !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+[data-testid="stSidebar"] [data-testid="stRadioOption"] > div > div:first-child > div {
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:has(input:checked) > div > div:first-child {
+    border-color: #00847f !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:has(input:checked) > div > div:first-child > div {
+    background: #00847f !important;
+}
+[data-testid="stSidebar"] [data-testid="stRadioOption"]:has(input:focus-visible) {
+    outline: 2px solid #00847f;
+    outline-offset: 3px;
+}
