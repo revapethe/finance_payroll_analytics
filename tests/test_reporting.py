@@ -162,3 +162,22 @@ def test_overview_allocation_metrics():
         next(w for w in at.selectbox if w.label == "Allocation metric").set_value(metric).run()
         assert not at.exception and not at.error
         assert at.dataframe[0].value.headcount.sum() == 50000
+
+
+def test_scenario_budget_headroom_and_ui():
+    from app.reporting import scenario_projection
+
+    frame = load_employee_data()
+    base = frame.annual_salary_usd.sum()
+    result = scenario_projection(frame, 5, budget=base * 1.10)
+    assert result["headroom"] == pytest.approx(base * 0.05)
+    assert scenario_projection(frame, 5, budget=0)["headroom"] == pytest.approx(-base * 1.05)
+    with pytest.raises(ValueError):
+        scenario_projection(frame, 5, budget=-1)
+    at = AppTest.from_file(str(ROOT / "app/dashboard.py"), default_timeout=30).run()
+    next(w for w in at.radio if w.label == "Analysis view").set_value("Scenario lab").run()
+    next(w for w in at.checkbox if w.label == "Add a planning budget").check().run()
+    assert not at.exception and not at.error
+    next(w for w in at.number_input if w.label == "Annual salary budget (USD)").set_value(0.0).run()
+    assert not at.exception and not at.error
+    assert any("exceeds the planning budget" in x.value for x in at.warning)

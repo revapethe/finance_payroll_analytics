@@ -60,14 +60,18 @@ def apply_filters(
     return result.copy()
 
 
-def scenario_projection(frame, adjustment):
+def scenario_projection(frame, adjustment, budget=None):
     import math
 
     if not math.isfinite(adjustment) or not -100 <= adjustment <= 100:
         raise ValueError("Adjustment must be between -100 and 100 percent.")
     baseline = float(frame.annual_salary_usd.sum())
     change = baseline * adjustment / 100
+    if budget is not None and (not math.isfinite(budget) or budget < 0):
+        raise ValueError("Budget must be finite and nonnegative.")
     return {
+        "budget": budget,
+        "headroom": None if budget is None else budget - (baseline + change),
         "headcount": len(frame),
         "baseline": baseline,
         "projected": baseline + change,
@@ -414,6 +418,51 @@ def render_overview(frame):
         a.metric("Projected annual salary", compact_money(result["projected"]))
         b.metric("Annual change (USD)", f"{result['annual_change']:+,.0f}")
         c.metric("Monthly change (USD)", f"{result['monthly_change']:+,.0f}")
+        if st.checkbox("Add a planning budget"):
+            budget = st.number_input(
+                "Annual salary budget (USD)",
+                min_value=0.0,
+                value=round(result["baseline"] * 1.05, 2),
+                step=1000.0,
+            )
+            result = scenario_projection(filtered, adjustment, budget=budget)
+            headroom = result["headroom"]
+            left, right = st.columns(2)
+            left.metric("Budget headroom (USD)", f"{headroom:+,.0f}")
+            right.metric(
+                "Budget utilization",
+                f"{result['projected'] / budget:.1%}" if budget else "No budget allocated",
+            )
+            if headroom < 0:
+                st.warning(
+                    f"This scenario exceeds the planning budget by {abs(headroom):,.0f} USD annually."
+                )
+            else:
+                st.success(
+                    f"This scenario stays within budget, with {headroom:,.0f} USD available."
+                )
+            st.caption(
+                "This is a user-defined planning assumption; no actual company budget is present in the dataset."
+            )
+        import json
+
+        st.download_button(
+            "Download scenario assumptions",
+            json.dumps(
+                {
+                    "snapshot": snapshot,
+                    "adjustment_percent": adjustment,
+                    "countries": countries,
+                    "departments": departments,
+                    "work_arrangements": arrangements,
+                    "job_titles": roles,
+                    **result,
+                },
+                indent=2,
+            ),
+            "scenario_assumptions.json",
+            "application/json",
+        )
         scenario = groups.copy()
         scenario["adjustment_percent"] = adjustment
         scenario["annual_change_usd"] = scenario.annual_payroll_usd * adjustment / 100

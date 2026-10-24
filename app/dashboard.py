@@ -16,7 +16,10 @@ from app.analytics import PayrollAnalyst, CompensationAdvisor, build_knowledge_b
 from app.data import load_employee_data, DOCUMENTS  # noqa: E402
 
 st.set_page_config(
-    page_title="Payroll Analytics", page_icon="📊", layout="wide", initial_sidebar_state="expanded"
+    page_title="Payroll Analytics",
+    page_icon=str(ROOT / "app/favicon.png"),
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 st.markdown("<style>" + (ROOT / "app/style.css").read_text() + "</style>", unsafe_allow_html=True)
 

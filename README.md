@@ -30,7 +30,7 @@ The dashboard uses a **flat navy blue theme** with shared filters, KPI cards and
 | Workforce | Explores employee distribution across cities, departments and job titles. |
 | Compensation | Shows salary distributions, median salary comparisons and cohort-based review candidates. |
 | Cohort comparison | Compares headcount, median salary and P90 salary for the same department across countries. |
-| Scenario lab | Models hypothetical salary adjustments for the selected workforce without changing source records. |
+| Scenario lab | Models hypothetical salary adjustments, optional planning-budget headroom and downloadable scenario assumptions without changing source records. |
 | Employee explorer | Provides employee ID and job-title search, salary filters, sorting, pagination and exports without names or email addresses. |
 
 A separate Question explorer supports keyword and regular-expression filtering, alongside optional retrieval from 25 synthetic policy documents. It does not use an LLM or translate natural language into SQL.

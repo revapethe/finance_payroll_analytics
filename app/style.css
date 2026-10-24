@@ -1,40 +1,40 @@
 :root { color-scheme: dark; }
 .stApp {
-    background: #05325b;
+    background: #091d35;
     color: #f8f9fc;
     font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
-[data-testid="stSidebar"] { background: #0d406a; border-right: 1px solid #386589; }
-[data-testid="stHeader"] { background: #05325b; }
+[data-testid="stSidebar"] { background: #123557; border-right: 1px solid #2d5276; }
+[data-testid="stHeader"] { background: #091d35; }
 .block-container { max-width: 1640px; padding: 2.3rem 2.5rem 3rem; }
 h1, h2, h3 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; letter-spacing: -.035em; color: #f8f9fc !important; }
 h1 { font-size: clamp(1.8rem, 3vw, 2.8rem) !important; font-weight: 750 !important; margin-bottom: .25rem; }
 h2 { font-size: 1.5rem !important; } h3 { font-size: 1.1rem !important; }
 .subtitle { color: #c2cbe0; font-size: .98rem; margin-bottom: 1.4rem; }
-.eyebrow { color: #90c4ea; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
+.eyebrow { color: #79a9d6; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
 [data-testid="stMetric"] {
-    background: #0d406a;
-    border: 1px solid #386589; border-top: 2px solid #90c4ea;
+    background: #123557;
+    border: 1px solid #2d5276; border-top: 2px solid #79a9d6;
     border-radius: 8px; padding: 1.1rem 1.25rem; min-height: 118px;
     box-shadow: none;
 }
 [data-testid="stMetricLabel"] { color: #c2cbe0; font-size: .82rem; }
 [data-testid="stMetricValue"] { color: #f8f9fc; font-size: clamp(1.65rem,2.4vw,2.3rem); font-weight: 650; }
-[data-testid="stExpander"] { border: 1px solid #386589; border-radius: 8px; background: #05325b; }
-[data-testid="stExpander"] summary { background: #0d406a; border-radius: 10px; }
+[data-testid="stExpander"] { border: 1px solid #2d5276; border-radius: 8px; background: #091d35; }
+[data-testid="stExpander"] summary { background: #123557; border-radius: 10px; }
 [data-testid="stRadio"] label, [data-testid="stMultiSelect"] label,
 [data-testid="stSelectbox"] label, [data-testid="stSlider"] label { color: #c2cbe0 !important; }
-[data-baseweb="select"] > div, [data-baseweb="input"] { background: #0d406a !important; border-color: #386589 !important; }
+[data-baseweb="select"] > div, [data-baseweb="input"] { background: #123557 !important; border-color: #2d5276 !important; }
 input, textarea { color: #f8f9fc !important; -webkit-text-fill-color: #f8f9fc !important; }
 [data-testid="stButton"] button, [data-testid="stDownloadButton"] button {
-    border-radius: 8px; border-color: #386589; font-weight: 600;
+    border-radius: 8px; border-color: #2d5276; font-weight: 600;
 }
-[data-testid="stButton"] button[kind="primary"] { background: #90c4ea; color: #05325b; }
-[data-testid="stPlotlyChart"] { border: 1px solid #386589; border-radius: 8px; overflow: hidden; }
-[data-testid="stDataFrame"] { border: 1px solid #386589; border-radius: 10px; overflow: hidden; }
+[data-testid="stButton"] button[kind="primary"] { background: #79a9d6; color: #091d35; }
+[data-testid="stPlotlyChart"] { border: 1px solid #2d5276; border-radius: 8px; overflow: hidden; }
+[data-testid="stDataFrame"] { border: 1px solid #2d5276; border-radius: 10px; overflow: hidden; }
 [data-testid="stCaptionContainer"] { color: #c2cbe0; }
-.agent-message { background: #0d406a; border: 1px solid #386589; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
-hr { border-color: #386589 !important; }
+.agent-message { background: #123557; border: 1px solid #2d5276; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
+hr { border-color: #2d5276 !important; }
 @media (max-width: 760px) {
     .block-container { padding: 1.2rem 1rem; }
     [data-testid="stMetric"] { min-height: 98px; padding: .8rem; }
@@ -50,27 +50,27 @@ hr { border-color: #386589 !important; }
 }
 [data-testid="stRadio"] [role="radiogroup"] { gap: .7rem; }
 [data-testid="stRadio"] [role="radiogroup"] label {
-    padding: .45rem .7rem; border: 1px solid #386589;
-    border-radius: 6px; background: #0d406a;
+    padding: .45rem .7rem; border: 1px solid #2d5276;
+    border-radius: 6px; background: #123557;
 }
-.insight-card { background: #0d406a; border: 1px solid #386589; border-left: 3px solid #90c4ea; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #c2cbe0; }
+.insight-card { background: #123557; border: 1px solid #2d5276; border-left: 3px solid #79a9d6; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #c2cbe0; }
 
 /* Reference palette: middle blue is the dominant page color. */
 [data-testid="stButton"] button[kind="primary"] {
-    background: #90c4ea !important; border-color: #90c4ea !important;
-    color: #05325b !important; -webkit-text-fill-color: #05325b !important;
+    background: #79a9d6 !important; border-color: #79a9d6 !important;
+    color: #091d35 !important; -webkit-text-fill-color: #091d35 !important;
 }
-[data-testid="stMetric"]:nth-child(1) { border-top-color: #90c4ea; }
+[data-testid="stMetric"]:nth-child(1) { border-top-color: #79a9d6; }
 [data-testid="stSidebar"] .eyebrow { color: #1d6ba4; }
-::selection { background: #1d6ba4; color: #05325b; }
+::selection { background: #79a9d6; color: #091d35; }
 
-/* Reference scheme: middle blue canvas with fourth-color light blue sidebar. */
-[data-testid="stSidebar"] { background: #90c4ea !important; border-right: 1px solid #6ca4cf; }
+/* Darkened navy canvas and coordinated slate-blue sidebar. */
+[data-testid="stSidebar"] { background: #183956 !important; border-right: 1px solid #365a79; }
 [data-testid="stSidebar"] [data-testid="stRadio"] label,
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"],
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3 { color: #05325b !important; }
-[data-testid="stSidebar"] [role="radiogroup"] label { background: #cce7f9 !important; border-color: #6ca4cf !important; }
-[data-testid="stSidebar"] button { color: #05325b !important; }
+[data-testid="stSidebar"] h3 { color: #edf4fc !important; }
+[data-testid="stSidebar"] [role="radiogroup"] label { background: #12304d !important; border-color: #365a79 !important; }
+[data-testid="stSidebar"] button { color: #edf4fc !important; }
