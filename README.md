@@ -8,7 +8,7 @@ The project brings employee data into a consistent reporting model so analysts c
 
 ## Dataset
 
-The dataset contains **25,000 US employees and 25,000 Indian employees**, covering departments, job titles, cities, work arrangements, salaries, hire dates, tenure and performance labels. A reproducible generator preserves the original 2,000 records and adds 48,000 distinct synthetic employees.
+The dataset contains **25,000 US employees and 25,000 Indian employees**, covering departments, job titles, cities, work arrangements, salaries, hire dates, tenure and performance labels.
 
 The data represents a single snapshot dated **23 October 2026**. Salaries and policy documents are illustrative, and currency conversion uses a fixed synthetic assumption rather than live exchange rates.
 
