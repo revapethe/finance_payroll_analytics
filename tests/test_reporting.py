@@ -132,3 +132,33 @@ def test_public_demo_survives_unavailable_postgres(monkeypatch, failure):
     assert not any("Connected to PostgreSQL" in item.value for item in at.success)
     next(w for w in at.radio if w.label == "Analysis view").set_value("Scenario lab").run()
     assert not at.exception and not at.error
+
+
+def test_cohort_comparison_reconciles_and_renders():
+    from app.reporting import cohort_comparison
+
+    frame = load_employee_data()
+    compared = cohort_comparison(frame, "Engineering")
+    assert set(compared.country) == {"India", "United States"}
+    assert compared.headcount.sum() == frame.department.eq("Engineering").sum()
+    for row in compared.itertuples():
+        salaries = frame.loc[
+            frame.country.eq(row.country) & frame.department.eq("Engineering"), "annual_salary_usd"
+        ]
+        assert row.median_salary_usd == pytest.approx(salaries.median())
+        assert row.p90_salary_usd == pytest.approx(salaries.quantile(0.9))
+    at = AppTest.from_file(str(ROOT / "app/dashboard.py"), default_timeout=30).run()
+    next(w for w in at.radio if w.label == "Analysis view").set_value("Cohort comparison").run()
+    assert not at.exception and not at.error
+    assert len(at.dataframe[0].value) == 2
+    next(w for w in at.multiselect if w.label == "Countries").set_value(["India"]).run()
+    assert not at.exception and not at.error
+    assert any("Only one country" in x.value for x in at.info)
+
+
+def test_overview_allocation_metrics():
+    at = AppTest.from_file(str(ROOT / "app/dashboard.py"), default_timeout=30).run()
+    for metric in ["Headcount", "Median salary", "Annual salary"]:
+        next(w for w in at.selectbox if w.label == "Allocation metric").set_value(metric).run()
+        assert not at.exception and not at.error
+        assert at.dataframe[0].value.headcount.sum() == 50000

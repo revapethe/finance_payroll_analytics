@@ -84,17 +84,28 @@ def compact_money(value):
     return f"${value:,.0f}"
 
 
+def cohort_comparison(frame, department):
+    selected = frame[frame.department.eq(department)]
+    return selected.groupby("country", as_index=False).agg(
+        headcount=("employee_id", "count"),
+        annual_payroll_usd=("annual_salary_usd", "sum"),
+        mean_salary_usd=("annual_salary_usd", "mean"),
+        median_salary_usd=("annual_salary_usd", "median"),
+        p90_salary_usd=("annual_salary_usd", lambda values: values.quantile(0.9)),
+    )
+
+
 def chart(figure):
     import streamlit as st
 
     figure.update_layout(
-        paper_bgcolor="#0c2039",
-        plot_bgcolor="#0c2039",
+        paper_bgcolor="#10243f",
+        plot_bgcolor="#10243f",
         font={"color": "#c8daf1", "family": "Segoe UI, Arial"},
         title_font={"size": 17, "color": "#e8f2ff"},
         margin={"l": 70, "r": 25, "t": 62, "b": 30},
         height=365,
-        colorway=["#58a6ff", "#38d4c0", "#b6a2ff", "#ffc76c", "#f284a7"],
+        colorway=["#739bc7", "#a9bfd8", "#4875a6", "#c1d2e5", "#345a83"],
         legend={"orientation": "h", "y": -0.2, "title_text": ""},
     )
     figure.update_xaxes(gridcolor="#223b59", zerolinecolor="#223b59")
@@ -158,25 +169,46 @@ def render_overview(frame):
     )
     view = st.radio(
         "Analysis view",
-        ["Overview", "Workforce", "Compensation", "Scenario lab", "Employee explorer"],
+        [
+            "Overview",
+            "Workforce",
+            "Compensation",
+            "Cohort comparison",
+            "Scenario lab",
+            "Employee explorer",
+        ],
         horizontal=True,
     )
-    palette = {"United States": "#58a6ff", "India": "#38d4c0"}
+    palette = {"United States": "#739bc7", "India": "#a9bfd8"}
     groups = department_summary(filtered)
     if view == "Overview":
         st.subheader("Workforce & compensation overview")
+        metric_label = st.selectbox(
+            "Allocation metric", ["Annual salary", "Headcount", "Median salary"]
+        )
+        metric_column = {
+            "Annual salary": "annual_payroll_usd",
+            "Headcount": "headcount",
+            "Median salary": "median_salary_usd",
+        }[metric_label]
         left, right = st.columns([1.3, 1])
         with left:
+            order = groups.groupby("department")[metric_column].sum().sort_values().index.tolist()
             chart(
                 px.bar(
                     groups,
-                    x="department",
-                    y="annual_payroll_usd",
+                    y="department",
+                    x=metric_column,
                     color="country",
+                    orientation="h",
                     barmode="group",
                     color_discrete_map=palette,
-                    title="Where annual salary is allocated",
-                    labels={"department": "", "annual_payroll_usd": "Annual salary · USD"},
+                    category_orders={"department": order},
+                    title=f"Department comparison · {metric_label.lower()}",
+                    labels={
+                        "department": "",
+                        metric_column: "Employees" if metric_column == "headcount" else "USD",
+                    },
                 )
             )
         with right:
@@ -188,12 +220,16 @@ def render_overview(frame):
                     values="employees",
                     hole=0.7,
                     title="How the workforce works",
-                    color_discrete_sequence=["#58a6ff", "#38d4c0", "#b6a2ff"],
+                    color_discrete_sequence=["#739bc7", "#a9bfd8", "#4875a6"],
                 )
             )
         leading = groups.iloc[0]
-        st.info(
-            f"Largest selected salary allocation: {leading['department']} · {leading['country']} — {compact_money(leading['annual_payroll_usd'])} across {leading['headcount']:,} employees. This describes the synthetic workforce mix."
+        from html import escape
+
+        share = leading["annual_payroll_usd"] / metrics["annual_payroll_usd"]
+        st.markdown(
+            f"<div class='insight-card'><strong>Allocation insight</strong><br>{escape(str(leading['department']))} · {escape(str(leading['country']))} represents <strong>{share:.1%}</strong> of the selected salary run rate — {compact_money(leading['annual_payroll_usd'])} across {leading['headcount']:,} employees.</div>",
+            unsafe_allow_html=True,
         )
         st.dataframe(
             groups,
@@ -322,6 +358,49 @@ def render_overview(frame):
             "Download compensation review",
             reviewed[columns].to_csv(index=False),
             "compensation_review.csv",
+            "text/csv",
+        )
+    elif view == "Cohort comparison":
+        st.subheader("Compare country cohorts")
+        st.caption(
+            "Compare the same department across countries within the active filters. Differences reflect synthetic role mixes and fixed currency conversion, not pay-equity findings."
+        )
+        department = st.selectbox("Comparison department", sorted(filtered.department.unique()))
+        compared = cohort_comparison(filtered, department)
+        left, right = st.columns(2)
+        with left:
+            chart(
+                px.bar(
+                    compared,
+                    x="country",
+                    y="median_salary_usd",
+                    color="country",
+                    color_discrete_map=palette,
+                    title="Median salary · matched department",
+                    labels={"country": "", "median_salary_usd": "USD"},
+                )
+            )
+        with right:
+            chart(
+                px.bar(
+                    compared,
+                    x="country",
+                    y="p90_salary_usd",
+                    color="country",
+                    color_discrete_map=palette,
+                    title="P90 salary · matched department",
+                    labels={"country": "", "p90_salary_usd": "USD"},
+                )
+            )
+        if len(compared) < 2:
+            st.info(
+                "Only one country is in the current selection. Include both countries to compare cohorts."
+            )
+        st.dataframe(compared, width="stretch", hide_index=True)
+        st.download_button(
+            "Download cohort comparison",
+            compared.to_csv(index=False),
+            "cohort_comparison.csv",
             "text/csv",
         )
     elif view == "Scenario lab":

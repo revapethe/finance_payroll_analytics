@@ -22,13 +22,14 @@ The data represents a single snapshot dated **23 October 2026**. Salaries and po
 
 ## Streamlit dashboard
 
-The dashboard uses a **dark navy and blue theme** with shared filters, KPI cards and interactive charts. It supports both the versioned CSV dataset and the latest PostgreSQL warehouse snapshot.
+The dashboard uses a **flat navy blue theme** with shared filters, KPI cards and interactive charts. It supports both the versioned CSV dataset and the latest PostgreSQL warehouse snapshot.
 
 | Workspace | Purpose |
 |---|---|
 | Overview | Summarizes selected headcount, salary allocation, compensation statistics and work arrangements. |
 | Workforce | Explores employee distribution across cities, departments and job titles. |
 | Compensation | Shows salary distributions, median salary comparisons and cohort-based review candidates. |
+| Cohort comparison | Compares headcount, median salary and P90 salary for the same department across countries. |
 | Scenario lab | Models hypothetical salary adjustments for the selected workforce without changing source records. |
 | Employee explorer | Provides employee ID and job-title search, salary filters, sorting, pagination and exports without names or email addresses. |
 

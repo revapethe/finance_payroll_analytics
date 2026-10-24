@@ -1,26 +1,26 @@
 :root { color-scheme: dark; }
 .stApp {
-    background: radial-gradient(ellipse at 85% 0%, #14345a 0%, transparent 44%), #071426;
+    background: #08182f;
     color: #e7effa;
     font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
 [data-testid="stSidebar"] { background: #0b1d34; border-right: 1px solid #203c60; }
-[data-testid="stHeader"] { background: rgba(7,20,38,.92); }
+[data-testid="stHeader"] { background: #08182f; }
 .block-container { max-width: 1640px; padding: 2.3rem 2.5rem 3rem; }
 h1, h2, h3 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; letter-spacing: -.035em; color: #edf5ff !important; }
 h1 { font-size: clamp(1.8rem, 3vw, 2.8rem) !important; font-weight: 750 !important; margin-bottom: .25rem; }
 h2 { font-size: 1.5rem !important; } h3 { font-size: 1.1rem !important; }
 .subtitle { color: #9cb5d5; font-size: .98rem; margin-bottom: 1.4rem; }
-.eyebrow { color: #72b9ff; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
+.eyebrow { color: #91b1d7; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
 [data-testid="stMetric"] {
-    background: linear-gradient(135deg, #122b4b, #0d2039);
-    border: 1px solid #29466a; border-top: 3px solid #5aaaff;
-    border-radius: 12px; padding: 1.1rem 1.25rem; min-height: 118px;
-    box-shadow: 0 6px 22px #02091240;
+    background: #10243f;
+    border: 1px solid #29466a; border-top: 2px solid #779cc7;
+    border-radius: 8px; padding: 1.1rem 1.25rem; min-height: 118px;
+    box-shadow: none;
 }
 [data-testid="stMetricLabel"] { color: #b4c9e4; font-size: .82rem; }
 [data-testid="stMetricValue"] { color: #f0f6ff; font-size: clamp(1.65rem,2.4vw,2.3rem); font-weight: 650; }
-[data-testid="stExpander"] { border: 1px solid #294466; border-radius: 12px; background: #0b1c32; }
+[data-testid="stExpander"] { border: 1px solid #294466; border-radius: 8px; background: #0b1c32; }
 [data-testid="stExpander"] summary { background: #102440; border-radius: 10px; }
 [data-testid="stRadio"] label, [data-testid="stMultiSelect"] label,
 [data-testid="stSelectbox"] label, [data-testid="stSlider"] label { color: #c4d6ee !important; }
@@ -30,12 +30,27 @@ input, textarea { color: #e7effa !important; -webkit-text-fill-color: #e7effa !i
     border-radius: 8px; border-color: #355b89; font-weight: 600;
 }
 [data-testid="stButton"] button[kind="primary"] { background: #2c7ed6; color: #fff; }
-[data-testid="stPlotlyChart"] { border: 1px solid #233f61; border-radius: 12px; overflow: hidden; }
+[data-testid="stPlotlyChart"] { border: 1px solid #233f61; border-radius: 8px; overflow: hidden; }
 [data-testid="stDataFrame"] { border: 1px solid #294466; border-radius: 10px; overflow: hidden; }
 [data-testid="stCaptionContainer"] { color: #9db4d0; }
-.agent-message { background: #102947; border: 1px solid #31537c; padding: 1.2rem; border-radius: 12px; margin-bottom: 1rem; }
+.agent-message { background: #102947; border: 1px solid #31537c; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
 hr { border-color: #25405f !important; }
 @media (max-width: 760px) {
     .block-container { padding: 1.2rem 1rem; }
     [data-testid="stMetric"] { min-height: 98px; padding: .8rem; }
 }
+
+/* Solid surfaces throughout: no gradients, glow, transparency or glass effects. */
+[data-testid="stMetric"], [data-testid="stExpander"],
+[data-testid="stPlotlyChart"], [data-testid="stDataFrame"],
+[data-testid="stButton"] button, [data-testid="stDownloadButton"] button {
+    box-shadow: none !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+}
+[data-testid="stRadio"] [role="radiogroup"] { gap: .7rem; }
+[data-testid="stRadio"] [role="radiogroup"] label {
+    padding: .45rem .7rem; border: 1px solid #2d4565;
+    border-radius: 6px; background: #10243f;
+}
+.insight-card { background: #10243f; border: 1px solid #2d4565; border-left: 3px solid #88abd3; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #c6d5e8; }
