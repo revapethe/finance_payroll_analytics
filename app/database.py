@@ -11,6 +11,15 @@ def database_url():
         "PAYROLL_DATABASE_URL"
     )
     if not value:
+        import streamlit as st
+        from streamlit.errors import StreamlitSecretNotFoundError
+
+        if st.runtime.exists():
+            try:
+                value = st.secrets.get("PAYROLL_DATABASE_URL")
+            except (StreamlitSecretNotFoundError, FileNotFoundError):
+                pass
+    if not value:
         raise ValueError(
             "Configure PAYROLL_DATABASE_URL or run python -m etl.dev_database for a local demo."
         )
@@ -20,7 +29,12 @@ def database_url():
 def create_payroll_engine():
     from sqlalchemy import create_engine
 
-    engine = create_engine(database_url(), pool_pre_ping=True, hide_parameters=True)
+    engine = create_engine(
+        database_url(),
+        pool_pre_ping=True,
+        hide_parameters=True,
+        connect_args={"connect_timeout": 5},
+    )
     if engine.dialect.name != "postgresql":
         engine.dispose()
         raise ValueError("PAYROLL_DATABASE_URL must use PostgreSQL.")

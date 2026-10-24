@@ -108,3 +108,27 @@ def test_existing_streamlit_deployment_entrypoint():
     at = AppTest.from_file(str(ROOT / "RESPONSIVE_PREMIUM.py"), default_timeout=30).run()
     assert not at.exception and not at.error
     assert next(m for m in at.metric if m.label == "Filtered headcount").value == "50,000"
+
+
+@pytest.mark.parametrize(
+    "failure", ["missing_configuration", "connection_failure", "empty_snapshot"]
+)
+def test_public_demo_survives_unavailable_postgres(monkeypatch, failure):
+    from app import database
+
+    def unavailable():
+        if failure == "empty_snapshot":
+            return load_employee_data().iloc[:0]
+        if failure == "missing_configuration":
+            raise ValueError("Missing configuration")
+        raise ConnectionError("Service unreachable")
+
+    monkeypatch.setattr(database, "load_warehouse_employees", unavailable)
+    at = AppTest.from_file(str(ROOT / "app/dashboard.py"), default_timeout=30).run()
+    next(w for w in at.radio if w.label == "Data source").set_value("PostgreSQL warehouse").run()
+    assert not at.exception and not at.error
+    assert next(m for m in at.metric if m.label == "Filtered headcount").value == "50,000"
+    assert any("CSV demo instead" in item.value for item in at.info)
+    assert not any("Connected to PostgreSQL" in item.value for item in at.success)
+    next(w for w in at.radio if w.label == "Analysis view").set_value("Scenario lab").run()
+    assert not at.exception and not at.error

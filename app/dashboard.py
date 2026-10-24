@@ -46,20 +46,29 @@ def main():
 
     source = st.sidebar.radio("Data source", ["CSV demo", "PostgreSQL warehouse"])
     workspace = st.sidebar.radio("Workspace", ["Analytics dashboard", "Question explorer"])
-    try:
-        if source == "PostgreSQL warehouse":
-            from app.database import load_warehouse_employees
+    df = None
+    if source == "PostgreSQL warehouse":
+        from app.database import load_warehouse_employees
 
+        try:
             df = load_warehouse_employees()
+            if df is None or df.empty:
+                raise ValueError("Warehouse snapshot is empty")
             st.sidebar.success("Connected to PostgreSQL · latest snapshot")
-        else:
+        except Exception:
+            st.info(
+                "PostgreSQL is not available for this deployment. Showing the 50,000-record CSV demo instead; all analytics views remain available."
+            )
+            st.sidebar.caption("Active source: CSV demo · PostgreSQL unavailable")
+            df = None
+    if df is None:
+        try:
             df = load_employee_data()
-            st.sidebar.caption("Source: versioned synthetic CSV")
-    except Exception:
-        st.error(
-            "Could not load the selected data source. Check database configuration, run the warehouse load, and inspect service health."
-        )
-        return
+            if source == "CSV demo":
+                st.sidebar.caption("Active source: versioned synthetic CSV")
+        except Exception:
+            st.error("The demo dataset could not be loaded. Please try again later.")
+            return
 
     if df is None or df.empty:
         st.error("Data unavailable")
