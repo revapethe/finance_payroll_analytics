@@ -218,7 +218,7 @@ def main():
                     go.Histogram(
                         x=results["annual_salary_usd"],
                         nbinsx=20,
-                        marker=dict(color="#8b9fc9", line=dict(color="#6b8db5", width=1)),
+                        marker=dict(color="#00c9eb", line=dict(color="#00c9eb", width=1)),
                         opacity=0.8,
                     )
                 )
@@ -227,7 +227,7 @@ def main():
                     title="Salary Distribution",
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#b8c8d8"),
+                    font=dict(color="#f8f9fc"),
                     height=450,
                     xaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
                     yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
@@ -245,7 +245,7 @@ def main():
                             go.Box(
                                 y=dept_data["annual_salary_usd"],
                                 name=dept,
-                                marker=dict(color="#8b9fc9"),
+                                marker=dict(color="#00c9eb"),
                             )
                         )
 
@@ -253,7 +253,7 @@ def main():
                         title="Department Comparison",
                         plot_bgcolor="rgba(0,0,0,0)",
                         paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#b8c8d8"),
+                        font=dict(color="#f8f9fc"),
                         height=450,
                     )
 
@@ -271,7 +271,7 @@ def main():
                             orientation="h",
                             marker=dict(
                                 color=top10["annual_salary_usd"],
-                                colorscale="Blues",
+                                colorscale=[[0, "#10214f"], [1, "#00c9eb"]],
                                 line=dict(color="rgba(139,159,201,0.3)", width=1),
                             ),
                             text=top10["annual_salary_usd"].apply(lambda x: f"${x / 1000:.0f}K"),
@@ -284,7 +284,7 @@ def main():
                     title="Top 10 by Salary",
                     plot_bgcolor="rgba(0,0,0,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#b8c8d8"),
+                    font=dict(color="#f8f9fc"),
                     height=500,
                     showlegend=False,
                     xaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
@@ -310,13 +310,13 @@ def main():
                         size="Employees",
                         color="Country",
                         hover_name="City",
-                        color_discrete_map={"United States": "#8b9fc9", "India": "#76b97f"},
+                        color_discrete_map={"United States": "#00c9eb", "India": "#ff466e"},
                     )
 
                     fig.update_layout(
                         plot_bgcolor="rgba(0,0,0,0)",
                         paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#b8c8d8"),
+                        font=dict(color="#f8f9fc"),
                         height=500,
                     )
 
@@ -333,7 +333,7 @@ def main():
                     fig2.update_layout(
                         plot_bgcolor="rgba(0,0,0,0)",
                         paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#0a0e14"),
+                        font=dict(color="#f8f9fc"),
                         height=500,
                     )
 
