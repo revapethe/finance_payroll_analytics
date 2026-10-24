@@ -45,9 +45,11 @@ SQL reporting views provide workforce KPIs, departmental salary summaries and co
 
 ## Power BI integration
 
-The Power BI source files include a five-table semantic model, four dimension-to-fact relationships, PostgreSQL Power Query connections and **11 DAX measures**. A theme and report specification cover Executive Overview, Compensation Analysis and Workforce Profile pages.
+A native **Power BI project (`.pbip`)** defines three report pages: Executive Overview, Compensation Analysis and Workforce Profile. Its 36 visual containers include page headings, slicers, KPI cards, salary comparisons, workforce composition charts and detail tables.
 
-CSV exports provide an alternative reporting source. Model structure, relationship keys and exports have been validated against PostgreSQL. Power BI Desktop execution and visual assembly remain a separate validation step; a completed `.pbix` report is not included.
+The CSV-backed semantic model contains five tables, four dimension-to-fact relationships and **11 DAX measures**. A packaged Desktop handoff includes the exported data, so viewing the report does not require PostgreSQL credentials. PostgreSQL Power Query connections and an alternative model definition are also retained.
+
+Report files are validated against Microsoft's official JSON schemas, with additional checks for model field references, visual layout and exported data. Power BI Desktop refresh, M/DAX execution and visual rendering still require verification on Windows. The deliverable is an editable project, not a Desktop-generated `.pbix` or a published Power BI Service dashboard.
 
 ## Technology stack
 

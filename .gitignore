@@ -213,3 +213,8 @@ data/generated/
 *.xlsx
 chroma_db/
 rag_config.json
+
+# Local Power BI Desktop data caches and machine settings
+powerbi/PayrollAnalytics/data/
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

@@ -1,39 +1,53 @@
-"""Create a credential-free Power BI Desktop handoff ZIP from a fresh warehouse export."""
+"""Package the native Power BI project with fresh warehouse CSVs and no credentials."""
 
 import argparse
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from zipfile import ZipFile, ZIP_DEFLATED
 from app.data import DATA, ROOT
 from etl.export_bi import export_model
+from etl.build_powerbi import build_project
+
+START_HERE = """# Open the assembled Power BI report
+
+1. Install the current Power BI Desktop on Windows.
+2. Extract ALL files from this ZIP into C:\\PayrollAnalytics (not inside another nested folder).
+3. Open PayrollAnalytics.pbip. If your Desktop version asks, enable Power BI project/PBIR support and restart Desktop.
+4. Select Refresh. The three pages, 36 visual containers, 11 measures and relationships are already defined.
+5. If you extracted elsewhere, select Transform data > Edit parameters, set DataFolder to the full path of the extracted data folder, Apply, then Refresh.
+6. Use Save As to save a PBIX after checking the report in Desktop.
+
+The included CSVs contain 50,000 synthetic employees. No PostgreSQL connection, cloud account or password is required for this CSV-backed project. Keep the .pbip, Report folder, SemanticModel folder and data folder together.
+
+This is a native editable Power BI project, not a Desktop-generated PBIX or a rendered report. Its files pass official Microsoft JSON-schema validation, and fields/relationships/data exports have been checked. Power BI Desktop, the M/DAX engines and visual rendering cannot be executed in the Linux cloud task and remain unverified. If Desktop reports a compatibility error, retain its exact message for diagnosis.
+
+Pages: Executive Overview; Compensation Analysis; Workforce Profile. The model contains one synthetic snapshot, not historical payroll payments. No benefits, taxes or actual company budgets are present.
+"""
 
 
 def package_model(output=None):
     destination = Path(output or DATA / "generated/PayrollAnalytics_PowerBI.zip")
     export_dir = DATA / "generated/powerbi"
-    export_model(export_dir)
+    manifest = export_model(export_dir)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
-        for path in sorted(export_dir.glob("*.csv")):
-            archive.write(path, f"data/{path.name}")
-        archive.write(export_dir / "manifest.json", "data/manifest.json")
-        for path in sorted((ROOT / "powerbi").iterdir()):
-            if path.is_file() and path.suffix in {".md", ".pq", ".bim", ".dax", ".json"}:
-                archive.write(path, f"powerbi/{path.name}")
-        for name in ["analytics-design.md", "analytics-findings.md", "dashboard.png"]:
-            path = ROOT / "docs" / name
-            if path.exists():
-                archive.write(path, f"docs/{name}")
-        archive.writestr(
-            "START_HERE.md",
-            """# Power BI Desktop handoff
-
-This package contains 50,000 synthetic employee compensation facts plus dimensions and reporting tables. It does not include credentials, a live database or a finished PBIX.
-
-On Windows, unzip this archive. In Power BI Desktop select Get data > Text/CSV and import data/dim_department.csv, dim_location.csv, dim_employee.csv, dim_snapshot.csv and fact_compensation.csv. Set keys to Whole Number or Text as appropriate, salaries to Fixed Decimal, and dates to Date. Follow powerbi/README.md to create four relationships, add the measures from powerbi/measures.dax and build the pages from powerbi/report-spec.json. Save the result as PayrollAnalytics.pbix on your PC.
-
-The extra summary CSVs are reconciliation inputs; do not join them into the star model. The model is one synthetic snapshot, not historical payment records. PostgreSQL connection files require a reachable PostgreSQL instance; cloud localhost is not your PC's localhost. Power BI Desktop execution/visual assembly has not been validated in the Linux task.
-""",
-        )
+    with TemporaryDirectory(prefix="payroll-bi-") as temp:
+        project = Path(temp) / "PayrollAnalytics"
+        build_project(project)
+        with ZipFile(destination, "w", ZIP_DEFLATED) as archive:
+            for path in sorted(project.rglob("*")):
+                if path.is_file():
+                    archive.write(path, str(path.relative_to(project)))
+            for path in sorted(export_dir.glob("*.csv")):
+                archive.write(path, f"data/{path.name}")
+            archive.write(export_dir / "manifest.json", "data/manifest.json")
+            archive.writestr(
+                "START_HERE.md",
+                START_HERE.replace("50,000", f"{manifest['tables']['fact_compensation']:,}"),
+            )
+            for name in ["analytics-design.md", "analytics-findings.md"]:
+                path = ROOT / "docs" / name
+                if path.exists():
+                    archive.write(path, f"docs/{name}")
     return destination
 
 

@@ -52,4 +52,4 @@ Do not add local INR and USD salaries together. USD conversion uses a fixed synt
 
 ## Validation boundaries
 
-PostgreSQL, SQL view calculations, SQL/pandas reconciliation, read-only access, rollback and CSV exports were exercised locally. The semantic model's columns and relationship keys are checked against those exports. Power BI Desktop's M/DAX engine, visual layout and refresh remain unverified until opened on Windows. A BI model source file is not evidence of a deployed Power BI report.
+PostgreSQL, SQL view calculations, SQL/pandas reconciliation, read-only access, rollback and CSV exports were exercised locally. The native Power BI project defines three report pages, 36 visual containers and a CSV-backed model with four relationships and 11 measures. Its report files pass official Microsoft JSON-schema validation; field references, visual bounds, column names and relationship keys are checked. Power BI Desktop's M/DAX engine, visual layout and refresh remain unverified until opened on Windows. A BI model source file is not evidence of a deployed Power BI report.

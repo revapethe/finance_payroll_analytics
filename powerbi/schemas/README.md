@@ -1,0 +1,1 @@
+Official Microsoft JSON schemas for offline PBIP/PBIR validation. Source: https://github.com/microsoft/json-schemas/tree/5e1199a15b80e3d51198fe017b1a6fb9bb0871a6/fabric . Distributed under the included MIT license. These schemas validate the report file format, not execution in Power BI Desktop.

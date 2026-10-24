@@ -32,3 +32,11 @@ jobs:
       - run: ruff format --check app etl tests
       - run: python -m pytest -q
       - run: python -m pip check
+      - run: python -m etl.validate_powerbi
+      - run: python -m etl.warehouse
+      - run: python -m etl.package_bi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PayrollAnalytics-PowerBI-Desktop
+          path: data/generated/PayrollAnalytics_PowerBI.zip
+          if-no-files-found: error
