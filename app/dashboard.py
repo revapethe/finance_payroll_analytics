@@ -218,19 +218,19 @@ def main():
                     go.Histogram(
                         x=results["annual_salary_usd"],
                         nbinsx=20,
-                        marker=dict(color="#00c9eb", line=dict(color="#00c9eb", width=1)),
+                        marker=dict(color="#636efa", line=dict(color="#636efa", width=1)),
                         opacity=0.8,
                     )
                 )
 
                 fig.update_layout(
                     title="Salary Distribution",
-                    plot_bgcolor="rgba(0,0,0,0)",
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#f8f9fc"),
+                    plot_bgcolor="#ffffff",
+                    paper_bgcolor="#ffffff",
+                    font=dict(color="#24334a"),
                     height=450,
-                    xaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
-                    yaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
+                    xaxis=dict(showgrid=True, gridcolor="#e5ecf6"),
+                    yaxis=dict(showgrid=True, gridcolor="#e5ecf6"),
                 )
 
                 st.plotly_chart(fig, width="stretch")
@@ -245,15 +245,15 @@ def main():
                             go.Box(
                                 y=dept_data["annual_salary_usd"],
                                 name=dept,
-                                marker=dict(color="#00c9eb"),
+                                marker=dict(color="#636efa"),
                             )
                         )
 
                     fig2.update_layout(
                         title="Department Comparison",
-                        plot_bgcolor="rgba(0,0,0,0)",
-                        paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#f8f9fc"),
+                        plot_bgcolor="#ffffff",
+                        paper_bgcolor="#ffffff",
+                        font=dict(color="#24334a"),
                         height=450,
                     )
 
@@ -271,7 +271,7 @@ def main():
                             orientation="h",
                             marker=dict(
                                 color=top10["annual_salary_usd"],
-                                colorscale=[[0, "#10214f"], [1, "#00c9eb"]],
+                                colorscale="Blues",
                                 line=dict(color="rgba(139,159,201,0.3)", width=1),
                             ),
                             text=top10["annual_salary_usd"].apply(lambda x: f"${x / 1000:.0f}K"),
@@ -282,12 +282,12 @@ def main():
 
                 fig.update_layout(
                     title="Top 10 by Salary",
-                    plot_bgcolor="rgba(0,0,0,0)",
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="#f8f9fc"),
+                    plot_bgcolor="#ffffff",
+                    paper_bgcolor="#ffffff",
+                    font=dict(color="#24334a"),
                     height=500,
                     showlegend=False,
-                    xaxis=dict(showgrid=True, gridcolor="rgba(255,255,255,0.05)"),
+                    xaxis=dict(showgrid=True, gridcolor="#e5ecf6"),
                     margin=dict(l=20, r=120, t=60, b=40),
                 )
 
@@ -310,13 +310,13 @@ def main():
                         size="Employees",
                         color="Country",
                         hover_name="City",
-                        color_discrete_map={"United States": "#00c9eb", "India": "#ff466e"},
+                        color_discrete_map={"United States": "#636efa", "India": "#EF553B"},
                     )
 
                     fig.update_layout(
-                        plot_bgcolor="rgba(0,0,0,0)",
-                        paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#f8f9fc"),
+                        plot_bgcolor="#ffffff",
+                        paper_bgcolor="#ffffff",
+                        font=dict(color="#24334a"),
                         height=500,
                     )
 
@@ -331,9 +331,9 @@ def main():
                     )
 
                     fig2.update_layout(
-                        plot_bgcolor="rgba(0,0,0,0)",
-                        paper_bgcolor="rgba(0,0,0,0)",
-                        font=dict(color="#f8f9fc"),
+                        plot_bgcolor="#ffffff",
+                        paper_bgcolor="#ffffff",
+                        font=dict(color="#24334a"),
                         height=500,
                     )
 

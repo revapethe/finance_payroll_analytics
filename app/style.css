@@ -1,40 +1,40 @@
 :root { color-scheme: dark; }
 .stApp {
-    background: #060b23;
+    background: #05325b;
     color: #f8f9fc;
     font-family: Inter, "Segoe UI", Arial, sans-serif;
 }
-[data-testid="stSidebar"] { background: #10214f; border-right: 1px solid #293b69; }
-[data-testid="stHeader"] { background: #060b23; }
+[data-testid="stSidebar"] { background: #0d406a; border-right: 1px solid #386589; }
+[data-testid="stHeader"] { background: #05325b; }
 .block-container { max-width: 1640px; padding: 2.3rem 2.5rem 3rem; }
 h1, h2, h3 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; letter-spacing: -.035em; color: #f8f9fc !important; }
 h1 { font-size: clamp(1.8rem, 3vw, 2.8rem) !important; font-weight: 750 !important; margin-bottom: .25rem; }
 h2 { font-size: 1.5rem !important; } h3 { font-size: 1.1rem !important; }
 .subtitle { color: #c2cbe0; font-size: .98rem; margin-bottom: 1.4rem; }
-.eyebrow { color: #00c9eb; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
+.eyebrow { color: #90c4ea; text-transform: uppercase; font-size: .7rem; letter-spacing: .18em; font-weight: 700; margin: 0 0 .5rem; }
 [data-testid="stMetric"] {
-    background: #10214f;
-    border: 1px solid #293b69; border-top: 2px solid #00c9eb;
+    background: #0d406a;
+    border: 1px solid #386589; border-top: 2px solid #90c4ea;
     border-radius: 8px; padding: 1.1rem 1.25rem; min-height: 118px;
     box-shadow: none;
 }
 [data-testid="stMetricLabel"] { color: #c2cbe0; font-size: .82rem; }
 [data-testid="stMetricValue"] { color: #f8f9fc; font-size: clamp(1.65rem,2.4vw,2.3rem); font-weight: 650; }
-[data-testid="stExpander"] { border: 1px solid #293b69; border-radius: 8px; background: #060b23; }
-[data-testid="stExpander"] summary { background: #10214f; border-radius: 10px; }
+[data-testid="stExpander"] { border: 1px solid #386589; border-radius: 8px; background: #05325b; }
+[data-testid="stExpander"] summary { background: #0d406a; border-radius: 10px; }
 [data-testid="stRadio"] label, [data-testid="stMultiSelect"] label,
 [data-testid="stSelectbox"] label, [data-testid="stSlider"] label { color: #c2cbe0 !important; }
-[data-baseweb="select"] > div, [data-baseweb="input"] { background: #10214f !important; border-color: #293b69 !important; }
+[data-baseweb="select"] > div, [data-baseweb="input"] { background: #0d406a !important; border-color: #386589 !important; }
 input, textarea { color: #f8f9fc !important; -webkit-text-fill-color: #f8f9fc !important; }
 [data-testid="stButton"] button, [data-testid="stDownloadButton"] button {
-    border-radius: 8px; border-color: #293b69; font-weight: 600;
+    border-radius: 8px; border-color: #386589; font-weight: 600;
 }
-[data-testid="stButton"] button[kind="primary"] { background: #00c9eb; color: #060b23; }
-[data-testid="stPlotlyChart"] { border: 1px solid #293b69; border-radius: 8px; overflow: hidden; }
-[data-testid="stDataFrame"] { border: 1px solid #293b69; border-radius: 10px; overflow: hidden; }
+[data-testid="stButton"] button[kind="primary"] { background: #90c4ea; color: #05325b; }
+[data-testid="stPlotlyChart"] { border: 1px solid #386589; border-radius: 8px; overflow: hidden; }
+[data-testid="stDataFrame"] { border: 1px solid #386589; border-radius: 10px; overflow: hidden; }
 [data-testid="stCaptionContainer"] { color: #c2cbe0; }
-.agent-message { background: #10214f; border: 1px solid #293b69; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
-hr { border-color: #293b69 !important; }
+.agent-message { background: #0d406a; border: 1px solid #386589; padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem; }
+hr { border-color: #386589 !important; }
 @media (max-width: 760px) {
     .block-container { padding: 1.2rem 1rem; }
     [data-testid="stMetric"] { min-height: 98px; padding: .8rem; }
@@ -50,16 +50,27 @@ hr { border-color: #293b69 !important; }
 }
 [data-testid="stRadio"] [role="radiogroup"] { gap: .7rem; }
 [data-testid="stRadio"] [role="radiogroup"] label {
-    padding: .45rem .7rem; border: 1px solid #293b69;
-    border-radius: 6px; background: #10214f;
+    padding: .45rem .7rem; border: 1px solid #386589;
+    border-radius: 6px; background: #0d406a;
 }
-.insight-card { background: #10214f; border: 1px solid #293b69; border-left: 3px solid #00c9eb; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #c2cbe0; }
+.insight-card { background: #0d406a; border: 1px solid #386589; border-left: 3px solid #90c4ea; border-radius: 6px; padding: .9rem 1.15rem; margin: .7rem 0 1rem; color: #c2cbe0; }
 
-/* Reference palette: first navy is the dominant page color. */
+/* Reference palette: middle blue is the dominant page color. */
 [data-testid="stButton"] button[kind="primary"] {
-    background: #00c9eb !important; border-color: #00c9eb !important;
-    color: #060b23 !important; -webkit-text-fill-color: #060b23 !important;
+    background: #90c4ea !important; border-color: #90c4ea !important;
+    color: #05325b !important; -webkit-text-fill-color: #05325b !important;
 }
-[data-testid="stMetric"]:nth-child(1) { border-top-color: #00c9eb; }
-[data-testid="stSidebar"] .eyebrow { color: #ff466e; }
-::selection { background: #ff466e; color: #060b23; }
+[data-testid="stMetric"]:nth-child(1) { border-top-color: #90c4ea; }
+[data-testid="stSidebar"] .eyebrow { color: #1d6ba4; }
+::selection { background: #1d6ba4; color: #05325b; }
+
+/* Reference scheme: middle blue canvas with fourth-color light blue sidebar. */
+[data-testid="stSidebar"] { background: #90c4ea !important; border-right: 1px solid #6ca4cf; }
+[data-testid="stSidebar"] [data-testid="stRadio"] label,
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 { color: #05325b !important; }
+[data-testid="stSidebar"] [role="radiogroup"] label { background: #cce7f9 !important; border-color: #6ca4cf !important; }
+[data-testid="stSidebar"] button { color: #05325b !important; }

@@ -99,27 +99,17 @@ def chart(figure):
     import streamlit as st
 
     figure.update_layout(
-        paper_bgcolor="#10214f",
-        plot_bgcolor="#10214f",
-        font={"color": "#f8f9fc", "family": "Segoe UI, Arial"},
-        title_font={"size": 17, "color": "#f8f9fc"},
+        template="plotly_white",
+        paper_bgcolor="#ffffff",
+        plot_bgcolor="#ffffff",
+        font={"color": "#24334a", "family": "Segoe UI, Arial"},
+        title_font={"size": 17, "color": "#24334a"},
         margin={"l": 70, "r": 25, "t": 62, "b": 30},
         height=365,
-        colorway=["#00c9eb", "#ff466e", "#8da6db", "#f8f9fc", "#4676ab"],
         legend={"orientation": "h", "y": -0.2, "title_text": ""},
     )
-    # Keep categorical charts within the reference palette, including default Plotly traces.
-    accents = ["#00c9eb", "#ff466e", "#8da6db", "#f8f9fc"]
-    for index, trace in enumerate(figure.data):
-        if trace.type == "pie":
-            trace.marker.colors = accents[: len(trace.labels)]
-            trace.textfont = {"color": "#060b23"}
-        elif trace.type in {"bar", "box"} and isinstance(trace.marker.color, (str, type(None))):
-            trace.marker.color = {"United States": "#00c9eb", "India": "#ff466e"}.get(
-                trace.name, accents[index % len(accents)]
-            )
-    figure.update_xaxes(gridcolor="#293b69", zerolinecolor="#293b69")
-    figure.update_yaxes(gridcolor="#293b69", zerolinecolor="#293b69")
+    figure.update_xaxes(gridcolor="#e5ecf6", zerolinecolor="#e5ecf6")
+    figure.update_yaxes(gridcolor="#e5ecf6", zerolinecolor="#e5ecf6")
     st.plotly_chart(figure, width="stretch", theme=None)
 
 
@@ -189,7 +179,7 @@ def render_overview(frame):
         ],
         horizontal=True,
     )
-    palette = {"United States": "#00c9eb", "India": "#ff466e"}
+    palette = {"United States": "#636efa", "India": "#EF553B"}
     groups = department_summary(filtered)
     if view == "Overview":
         st.subheader("Workforce & compensation overview")
@@ -230,7 +220,7 @@ def render_overview(frame):
                     values="employees",
                     hole=0.7,
                     title="How the workforce works",
-                    color_discrete_sequence=["#00c9eb", "#ff466e", "#8da6db"],
+                    color_discrete_sequence=px.colors.qualitative.Plotly,
                 )
             )
         leading = groups.iloc[0]
@@ -336,7 +326,7 @@ def render_overview(frame):
                     medians,
                     text_auto=",.0f",
                     aspect="auto",
-                    color_continuous_scale=["#10214f", "#167ba5", "#00c9eb"],
+                    color_continuous_scale="Blues",
                     title="Median salary by country & department",
                     labels={"color": "USD"},
                 )
