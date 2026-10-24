@@ -1,0 +1,15 @@
+Emergency Contacts
+
+EMERGENCY CONTACTS
+
+IT helpdesk: x2000, HR: x3000, Facilities: x4000, Security: x5000, Emergency: 911
+
+Last Updated: May 2026
+Version: 1.0
+Contact: hr@company.com for questions
+
+
+
+
+DOC023 | 2026-05-10
+

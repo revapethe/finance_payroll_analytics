@@ -1,0 +1,2 @@
+# PostgreSQL is included in the standard analytics environment.
+-r requirements.txt

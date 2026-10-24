@@ -1,8 +1,0 @@
-{
-  "total_documents": 25,
-  "total_chunks": 43,
-  "chromadb_location": "./chroma_db",
-  "collection_name": "employee_documents",
-  "documents_in_chromadb": 43,
-  "setup_completed": "2026-05-10T01:15:56.225634"
-}

@@ -1,0 +1,15 @@
+IT Security Policy
+
+IT SECURITY POLICY
+
+Password requirements (12+ chars, MFA required), data encryption, device security, incident reporting, acceptable use
+
+Last Updated: May 2026
+Version: 1.0
+Contact: hr@company.com for questions
+
+
+
+
+DOC008 | 2026-05-10
+

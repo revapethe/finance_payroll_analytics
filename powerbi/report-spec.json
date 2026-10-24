@@ -1,0 +1,10 @@
+{
+  "artifact_type": "report design specification, not a native Power BI report",
+  "source": "PostgreSQL payroll_analytics star schema, latest snapshot only",
+  "pages": [
+    {"name": "Executive Overview", "slicers": ["dim_location.country", "dim_department.department", "dim_employee.remote_status"], "cards": ["Headcount", "Annual Salary Run Rate USD", "Median Salary USD", "Remote Share"], "visuals": ["Clustered bar: department by annual salary, legend country", "Matrix: country > department with headcount, median and P90", "Donut: work arrangement by headcount"]},
+    {"name": "Compensation Analysis", "slicers": ["dim_location.country", "dim_department.department", "dim_employee.job_title"], "visuals": ["Bar: job title by average salary", "Matrix: department and job title with average, median, P90", "Scatter: city headcount against average salary, size annual salary", "Detail table: employee ID, salary, currency; no names or email"]},
+    {"name": "Workforce Profile", "slicers": ["dim_location.country", "dim_department.department"], "visuals": ["Stacked bar: department by headcount, legend work arrangement", "Bar: performance rating by headcount", "Matrix: country > city with headcount and average tenure"]}
+  ],
+  "limitations": ["One synthetic snapshot; no actual payroll payments or trend measures", "IQR flags are review candidates, not evidence of unfair pay", "INR conversion is fixed and illustrative", "Do not sum local salary across currencies"]
+}

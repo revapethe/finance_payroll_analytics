@@ -1,0 +1,34 @@
+Salary Compensation Guide
+
+COMPENSATION GUIDELINES 2026
+
+USA Salary Ranges by Role:
+- Software Engineer: $90,000 - $140,000
+- Senior Software Engineer: $130,000 - $180,000
+- Engineering Manager: $140,000 - $210,000
+- Director of Engineering: $180,000 - $250,000
+- VP Engineering: $220,000 - $300,000
+
+India Salary Ranges by Role:
+- Software Engineer: ■900,000 - ■1,800,000 ($10.8K - $21.6K USD)
+- Senior Software Engineer: ■1,500,000 - ■2,800,000 ($18K - $33.7K USD)
+- Engineering Manager: ■2,000,000 - ■4,200,000 ($24K - $50.4K USD)
+- Director: ■3,500,000 - ■6,500,000 ($42K - $78K USD)
+
+Equity Compensation:
+- Stock options granted to all employees
+- Vesting schedule: 4 years with 1-year cliff
+- Annual refresh grants for top performers
+- Exercise window: 10 years
+
+Bonus Structure:
+- Individual performance component: 0-15% of base
+- Company performance component: 0-10% of base
+- Total potential bonus: 0-25% annually
+- Paid quarterly based on achievement
+
+
+
+
+DOC002 | 2026-05-10
+

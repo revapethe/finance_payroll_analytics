@@ -1,0 +1,12 @@
+// Create these measures on fact_compensation. Fact rows are restricted to the latest snapshot.
+Headcount = COUNTROWS('fact_compensation')
+Annual Salary Run Rate USD = SUM('fact_compensation'[annual_salary_usd])
+Monthly Salary Equivalent USD = DIVIDE([Annual Salary Run Rate USD], 12)
+Average Salary USD = AVERAGE('fact_compensation'[annual_salary_usd])
+Median Salary USD = MEDIAN('fact_compensation'[annual_salary_usd])
+P90 Salary USD = PERCENTILEX.INC('fact_compensation', 'fact_compensation'[annual_salary_usd], 0.9)
+Remote Headcount = CALCULATE([Headcount], KEEPFILTERS('dim_employee'[remote_status] = "Remote"))
+Remote Share = DIVIDE([Remote Headcount], [Headcount])
+Average Tenure Years = AVERAGE('fact_compensation'[years_of_service])
+Department Salary Share = DIVIDE([Annual Salary Run Rate USD], CALCULATE([Annual Salary Run Rate USD], REMOVEFILTERS('dim_department')))
+Snapshot Date = MAX('fact_compensation'[snapshot_date])

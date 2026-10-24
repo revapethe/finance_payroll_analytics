@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Regenerable payroll outputs (source CSV and policy text remain versioned)
+data/generated/
+*.db
+*.db-journal
+*.xlsx
+chroma_db/
+rag_config.json

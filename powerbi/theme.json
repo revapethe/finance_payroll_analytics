@@ -1,0 +1,7 @@
+{
+  "name": "Payroll Analytics",
+  "dataColors": ["#497CBD", "#39A88E", "#E4B94C", "#966AC1", "#DB7970", "#56A5B8"],
+  "background": "#FFFFFF",
+  "foreground": "#17212F",
+  "tableAccent": "#497CBD"
+}
